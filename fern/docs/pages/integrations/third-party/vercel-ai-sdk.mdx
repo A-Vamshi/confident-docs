@@ -169,28 +169,36 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
 
 ### Logging prompts
 
-If you are [managing prompts](/docs/llm-evaluation/prompt-management/version-prompts) on Confident AI and wish to log them, pass your `Prompt` object to the `configureAiSdkTracing`.
+If you are [managing prompts](/docs/llm-evaluation/prompt-management/version-prompts) on Confident AI and wish to log them, pass your `Prompt` object to the `llmSpanContext` using the `setTracingContext` function:
 
 ```typescript
 import { generateText } from "ai";
 import { configureAiSdkTracing, Prompt } from "deepeval-ts";
+import { setTracingContext } from "deepeval-ts/tracing";
 
 const prompt = new Prompt({ alias: "PROMPT_ALIAS" });
 prompt.pull();
-const tracer = configureAiSdkTracing({
-  confident_prompt: prompt,
-});
 
-const { text } = await generateText({
-  model: "openai/gpt-4o",
-  prompt: "How to make the best coffee?",
-  experimental_telemetry: {
-    isEnabled: true,
-    tracer: tracer,
-  },
-});
+const tracer = configureAiSdkTracing();
 
-console.log(text);
+await setTracingContext(
+  {
+    llmSpanContext: {
+      prompt: prompt
+    }
+  }, 
+  async () => {
+    const { text } = await generateText({
+      model: "openai/gpt-4o",
+      prompt: "How to make the best coffee?",
+      experimental_telemetry: {
+        isEnabled: true,
+        tracer: tracer,
+      },
+    });
+    console.log(text);
+  }
+);
 ```
 
 <Note>
@@ -205,27 +213,32 @@ Confident AI's LLM tracing advanced features provide teams with the ability to s
 
 For example, `thread_id` and `user_id` are used to group related traces together, and are useful for chat apps, agents, or any multi-turn interactions. You can learn more about [threads](/docs/llm-tracing/features/threads) here.
 
-You can set these attributes in the `configureAiSdkTracing` from `deepeval-ts`:
+You can set these attributes using the `setTracingContext` function from `deepeval-ts`:
 
 ```typescript
 import { generateText } from "ai";
 import { configureAiSdkTracing } from "deepeval-ts";
+import { setTracingContext } from "deepeval-ts/tracing";
 
-const tracer = configureAiSdkTracing({
-  threadId: "123",
-  userId: "456",
-});
+const tracer = configureAiSdkTracing();
 
-const { text } = await generateText({
-  model: "openai/gpt-4o",
-  prompt: "How to make the best coffee?",
-  experimental_telemetry: {
-    isEnabled: true,
-    tracer: tracer,
-  },
-});
-
-console.log(text);
+await setTracingContext(
+  {
+    threadId: "123",
+    userId: "456"
+  }, 
+  async () => {
+    const { text } = await generateText({
+      model: "openai/gpt-4o",
+      prompt: "How to make the best coffee?",
+      experimental_telemetry: {
+        isEnabled: true,
+        tracer: tracer,
+      },
+    });
+    console.log(text);
+  }
+);
 ```
 
 <Accordion title='View Trace Attributes'>
@@ -287,23 +300,30 @@ You can run [online evals](/docs/llm-tracing/online-evals) on your AI SDK applic
     ```typescript
     import { generateText } from "ai";
     import { configureAiSdkTracing } from "deepeval-ts";
+    import { setTracingContext } from "deepeval-ts/tracing";
 
-    const tracer = configureAiSdkTracing({
-        metricCollection: "metric-collection-name",
-        llmMetricCollection: "llm-metric-collection-name",
-        toolMetricCollection: "tool-metric-collection-name"
-    });
+    const tracer = configureAiSdkTracing();
 
-    const { text } = await generateText({
-        model: "openai/gpt-4o",
-        prompt: "How to make the best coffee?",
-        experimental_telemetry: {
+    await setTracingContext(
+      {
+        metricCollection: "trace-metric-collection-name",
+        llmSpanContext: {
+          metricCollection: "llm-metric-collection-name",
+          toolMetricCollection: "tool-metric-collection-name"
+        }
+      }, 
+      async () => {
+        const { text } = await generateText({
+          model: "openai/gpt-4o",
+          prompt: "How to make the best coffee?",
+          experimental_telemetry: {
             isEnabled: true,
             tracer: tracer,
-        },
-    });
-
-    console.log(text);
+          },
+        });
+        console.log(text);
+      }
+    );
     ```
 
   </Step>
