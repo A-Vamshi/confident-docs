@@ -57,7 +57,7 @@ prompt.pull(version="00.00.01")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull({ version: "latest" });
@@ -236,7 +236,7 @@ print(response.choices[0].message.content)
 <Tab title="TypeScript" language="typescript" >
 
 ```typescript index.ts {11}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 import { OpenAI } from "openai";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
@@ -311,7 +311,7 @@ print(response.choices[0].message.content)
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts {11}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 import { OpenAI } from "openai";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
@@ -377,7 +377,7 @@ commits = prompt._get_versions()
 <Tab title="Typescript" language="typescript">
 
 ```typescript
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 const commits = await prompt.getVersions();
@@ -414,7 +414,7 @@ prompt.pull(label="staging")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull({ label: "staging" });
@@ -469,7 +469,7 @@ prompt.pull(hash="bab04ce")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull();
@@ -513,7 +513,7 @@ commits = prompt._get_commits()
 <Tab title="Typescript" language="typescript">
 
 ```typescript
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 const commits = await prompt.getCommits();
@@ -601,7 +601,7 @@ interpolated_prompt = prompt.interpolate(name="Joe")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts {4}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull({ refresh: 60 });
@@ -633,7 +633,7 @@ interpolated_prompt = prompt.interpolate(name="Joe")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts {4}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull({ refresh: 0 });
@@ -685,7 +685,7 @@ print(response.choices[0].message.content)
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts maxLines={0} focus={1-7}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 import { OpenAI } from "openai";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
@@ -768,7 +768,7 @@ print(response.choices[0].message.content)
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts maxLines={0} focus={1-17}
-import { Prompt, OutputType } from "deepeval-ts";
+import { Prompt, OutputType } from "deepeval";
 import { OpenAI } from "openai";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
@@ -865,7 +865,7 @@ print(response.choices[0].message)
 <Tab title="TypeScript" language="typescript">
 
 ```typescript index.ts maxLines={30} focus={1-18}
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 import { OpenAI } from "openai";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
@@ -982,7 +982,7 @@ const parseMultimodalString = (s: string) => {
 You can now use this method to get `multimodalArray` from prompt text and construct messages array to pass it to your MLLM. Here's an example on how to use it to construct `openai` format messages:
 
 ```typescript maxLines=0
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.pull();

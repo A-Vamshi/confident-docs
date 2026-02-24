@@ -177,7 +177,7 @@ import {
   ConversationalGolden,
   ConversationSimulator,
   EvaluationDataset,
-} from "deepeval-ts";
+} from "deepeval";
 
 const dataset = new EvaluationDataset();
 await dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -267,7 +267,7 @@ import {
   ConversationalTestCase,
   evaluate,
   EvaluationDataset,
-} from "deepeval-ts";
+} from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -323,7 +323,7 @@ conversation_golden = ConversationalGolden(
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { ConversationalGolden } from "deepeval-ts";
+import { ConversationalGolden } from "deepeval";
 
 const conversationGolden = new ConversationalGolden({
   scenario: "Andy Byron wants to purchase a VIP ticket to a cold play concert.",
@@ -385,7 +385,7 @@ conversation_golden = ConversationalGolden(
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { ConversationalGolden, Turn } from "deepeval-ts";
+import { ConversationalGolden, Turn } from "deepeval";
 
 const firstTurn = new Turn({
   role: "user",

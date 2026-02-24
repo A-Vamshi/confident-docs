@@ -55,7 +55,7 @@ If `cost_per_input_token` is not set, setting `input_token_count` will not help 
     </Tab>
     <Tab title="TypeScript" language="typescript">
         ```typescript title="index.ts"
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
 
         const generateResponse = (prompt: string): string => {
             // Implementation
@@ -115,7 +115,7 @@ A Retriever span represents a component that fetches relevant information from a
     </Tab>
     <Tab title="TypeScript" language="typescript">
         ```typescript title="index.ts"
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
 
         const retrieveDocuments = (query: string): string[] => {
             // Implementation
@@ -155,7 +155,7 @@ A Tool span represents a function that an agent can call to perform a specific t
     </Tab>
     <Tab title="TypeScript" language="typescript">
         ```typescript title="index.ts"
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
 
         const webSearch = (query: string): string => {
             // Implementation
@@ -207,7 +207,7 @@ An Agent span represents an autonomous entity that can make decisions and intera
     </Tab>
     <Tab title="TypeScript" language="typescript">
         ```typescript title="index.ts"
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
 
         const supervisorAgent = (query: string): string => {
             // Implementation
@@ -252,7 +252,7 @@ The most flexible `type` out of all (and the default type if `type` is not provi
     </Tab>
     <Tab title="TypeScript" language="typescript">
         ```typescript
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
         
         const ragPipeline = (query: string): string => {
             // Implementation

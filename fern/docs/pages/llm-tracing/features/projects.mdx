@@ -51,7 +51,7 @@ You can specify which project each trace should be sent to by setting the Confid
         You can use `updateCurrentTrace` to set the `confidentApiKey` for a specific trace.
 
             ```typescript title="index.ts" {12,14}
-            import { observe, updateCurrentTrace } from 'deepeval-ts/tracing';
+            import { observe, updateCurrentTrace } from 'deepeval/tracing';
             import OpenAI from 'openai';
 
             const llmApp = async (query: string) => {

@@ -41,7 +41,7 @@ You can track user interactions with your LLM app by setting the user ID in a tr
         You can use `updateCurrentTrace` to set the `userId` within traces:
 
             ```typescript title="index.ts" {10}
-            import { observe, updateCurrentTrace } from 'deepeval-ts/tracing';
+            import { observe, updateCurrentTrace } from 'deepeval/tracing';
             import OpenAI from 'openai';
 
             const llmApp = async (query: string) => {

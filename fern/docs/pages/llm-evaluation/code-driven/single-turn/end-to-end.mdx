@@ -370,7 +370,7 @@ for golden in dataset.goldens:
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { EvaluationDataset, LLMTestCase, Golden } from "deepeval-ts";
+import { EvaluationDataset, LLMTestCase, Golden } from "deepeval";
 
 const dataset = new EvaluationDataset();
 await dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -412,7 +412,7 @@ evaluate(test_case=dataset.test_cases, metric_collection="YOUR-COLLECTION-NAME")
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { evaluate, EvaluationDataset, LLMTestCase } from "deepeval-ts";
+import { evaluate, EvaluationDataset, LLMTestCase } from "deepeval";
 
 const dataset = new EvaluationDataset();
 

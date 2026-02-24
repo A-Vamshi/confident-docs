@@ -69,10 +69,10 @@ Instrumentation must be done via code, so first install DeepEval, Confident AI's
       <CodeBlocks>
 
         ```bash title="npm"
-        npm install deepeval-ts
+        npm install deepeval
         ```
         ```bash title="yarn"
-        yarn add deepeval-ts
+        yarn add deepeval
         ```
 
       </CodeBlocks>
@@ -105,7 +105,7 @@ Instrumentation must be done via code, so first install DeepEval, Confident AI's
           export CONFIDENT_API_KEY=YOUR-API-KEY
           ```
           ```ts title="In code"
-          import { traceManager } from 'deepeval-ts/tracing';
+          import { traceManager } from 'deepeval/tracing';
 
           traceManager.configure({
               confidentApiKey: "YOUR-API-KEY"
@@ -145,7 +145,7 @@ Instrumentation must be done via code, so first install DeepEval, Confident AI's
       <Tab title="TypeScript">
         ```ts title="index.ts"
         import OpenAI from 'openai';
-        import { observe } from 'deepeval-ts/tracing';
+        import { observe } from 'deepeval/tracing';
 
         const llmApp = async (query: string) => {
           const openai = new OpenAI();
@@ -223,7 +223,7 @@ import {
   observe,
   updateCurrentTrace,
   updateCurrentSpan,
-} from "deepeval-ts/tracing";
+} from "deepeval/tracing";
 
 const retriever = (query: string) => {
   const chunks = retrieve(query);
@@ -302,7 +302,7 @@ llm_app("What about tomorrow?")
 
 ```typescript title="index.ts" {2,11} maxLines={0}
 import OpenAI from "openai";
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 
 const llmApp = async (query: string) => {
   const openai = new OpenAI();

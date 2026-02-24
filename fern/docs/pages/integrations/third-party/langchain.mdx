@@ -118,7 +118,7 @@ import {
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { createToolCallingAgent, AgentExecutor } from "langchain/agents";
 
-import { DeepEvalCallbackHandler } from "deepeval-ts/integrations";
+import { DeepEvalCallbackHandler } from "deepeval/integrations";
 
 const handler = new DeepEvalCallbackHandler({});
 
@@ -303,7 +303,7 @@ llm = ChatOpenAI(
 
 ```typescript TypeScript
 import { ChatOpenAI } from "@langchain/openai";
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "<prompt-alias>" });
 prompt.pull({ version: "00.00.01" });
@@ -405,7 +405,7 @@ import {
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { createToolCallingAgent, AgentExecutor } from "langchain/agents";
 
-import { DeepEvalCallbackHandler } from "deepeval-ts/integrations";
+import { DeepEvalCallbackHandler } from "deepeval/integrations";
 
 const handler = new DeepEvalCallbackHandler({
   metricCollection: "<metric_collection_name>",
@@ -515,7 +515,7 @@ import {
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { createToolCallingAgent, AgentExecutor } from "langchain/agents";
 
-import { DeepEvalCallbackHandler } from "deepeval-ts/integrations";
+import { DeepEvalCallbackHandler } from "deepeval/integrations";
 
 const handler = new DeepEvalCallbackHandler({});
 
