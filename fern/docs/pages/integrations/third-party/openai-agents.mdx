@@ -15,9 +15,25 @@ subtitle: Use Confident AI for LLM observability and evals for OpenAI Agents
 
 Run the following command to install the required packages:
 
-```bash
+<CodeBlocks> 
+
+<CodeBlock language="python">
+
+```python
 pip install -U deepeval openai-agents
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+npm install deepeval-ts @openai/agents
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Step>
 
@@ -27,7 +43,15 @@ Login to Confident AI using your Confident API key.
 
 <CodeBlocks>
 
-<CodeBlock language="bash">
+<CodeBlock title="Env" language="bash">
+
+```bash
+export CONFIDENT_API_KEY="<your-confident-api-key>"
+```
+
+</CodeBlock>
+
+<CodeBlock language="bash" title="Bash">
 
 ```bash
 deepeval login
@@ -54,6 +78,10 @@ deepeval.login("<your-confident-api-key>")
 
 Add DeepEval's trace processor to OpenAI Agents.
 
+<CodeBlocks>
+
+<CodeBlock language="python">
+
 ```python main.py {4}
 from deepeval.openai_agents import DeepEvalTracingProcessor
 from agents import add_trace_processor, Agent, Runner
@@ -64,6 +92,25 @@ agent = Agent(name="Assistant", instructions="You are a helpful assistant")
 result = Runner.run_sync(agent, "Write a haiku about recursion in programming.")
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript {1,4-5}
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const agent = new Agent({ name: "Assistant", instructions: "You are a helpful assistant" });
+const result = await run(agent, "Write a haiku about recursion in programming.");
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 <Note>
 Now whenever you use OpenAI Agents, DeepEval will collect OpenAI Agents traces and publish them to Confident AI.
 </Note>
@@ -73,9 +120,25 @@ Now whenever you use OpenAI Agents, DeepEval will collect OpenAI Agents traces a
 
 Invoke your agent by executing the script:
 
-```bash
+<CodeBlocks >
+
+<CodeBlock language="python">
+
+```python
 python main.py
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+npx ts-node
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 You can directly view the traces on [Confident AI](https://app.confident.ai) by clicking on the link in the output printed in the console.
 
@@ -89,6 +152,10 @@ You can directly view the traces on [Confident AI](https://app.confident.ai) by 
 
 Threads are used to group related traces together, and are useful for chat apps, agents, or any multi-turn interactions. You can learn more about [threads](/docs/llm-tracing/features/threads) here. You can set the `thread_id` in as `group_id` in the `trace` context.
 
+<CodeBlocks>
+
+<CodeBlock language="python">
+
 ```python main.py {7}
 from deepeval.openai_agents import DeepEvalTracingProcessor
 from agents import add_trace_processor, Agent, Runner, trace
@@ -100,9 +167,44 @@ with trace(workflow_name="test_workflow_1", group_id="test_group_id_1"):
       result = Runner.run_sync(agent, "Write a haiku about recursion in programming.")
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      threadId: "test_thread_id_1",
+      userId: "new_user_id",
+    },
+    async () => {
+      const result = await run(agent, "Write a haiku about recursion in programming.");
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 ### Logging metadata
 
 You can also set the `metadata` in the `trace` context.
+
+<CodeBlocks>
+
+<CodeBlock language="python">
 
 ```python main.py {7}
 from deepeval.openai_agents import DeepEvalTracingProcessor
@@ -115,10 +217,43 @@ with trace(workflow_name="test_workflow_1", metadata={"test_metadata_1": "test_m
       result = Runner.run_sync(agent, "Write a haiku about recursion in programming.")
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metadata={ test_metadata_1: "test_metadata_1" }
+    },
+    async () => {
+      const result = await run(agent, "Write a haiku about recursion in programming.");
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 ### Streaming responses
 
 Confident AI handles both asynchronous workflows and streamed responses. The following example shows how to trace streamed responses with OpenAI Agents.
 
+<CodeBlocks>
+
+<CodeBlock language="python">
 ```python main.py
 from deepeval.openai_agents import DeepEvalTracingProcessor
 from agents import add_trace_processor, Agent, Runner
@@ -139,11 +274,49 @@ async def main():
 asyncio.run(main())
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      threadId: "thread_1",
+    },
+    async () => {
+      const result = await run(agent, "What's the weather in UK?", {stream: true});
+  
+      for await (const chunk of result) {
+        console.log(chunk)
+      }
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 ### Overwrite trace attributes
 
 If you are using `trace` context to set the trace attributes, the trace attributes such as the input will be the **input of the first agent run** while the output will be the **output of the last agent run**.
 
 If you want to set override the input, output, or any other attribute for the current trace, you can use the `update_current_trace` function:
+
+<CodeBlocks>
+
+<CodeBlock language="python">
 
 ```python main.py {10}
 from deepeval.openai_agents import DeepEvalTracingProcessor
@@ -162,6 +335,42 @@ with trace(workflow_name="test_workflow_1", metadata={"test_metadata_1": "test_m
         metadata={"New key": "New value"}
     )
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext, updateCurrentTrace } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metadata={ test_metadata_1: "test_metadata_1" }
+    },
+    async () => {
+      const result = await run(agent, "Hola, ¿cómo estás?");
+      updateCurrentTrace({
+        name: "New name",
+        input: "New input",
+        output: "New output",
+        metadata: {newKey: "New value"}
+      });
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 <Note>
   The `thread_id` and `metadata` will ALSO override the `trace` context's
@@ -203,6 +412,10 @@ with trace(workflow_name="test_workflow_1", metadata={"test_metadata_1": "test_m
 
 If you are managing prompts[/docs/llm-evaluation/prompt-management/version-prompts] on Confident AI and wish to log them, pass your `Prompt` object to the DeepEval's `Agent` wrapper.
 
+<CodeBlocks >
+
+<CodeBlock language="python">
+
 ```python main.py {13}
 from agents import Runner, add_trace_processor
 from deepeval.prompt import Prompt
@@ -220,6 +433,42 @@ spanish_agent = Agent(
 )
 Runner.run_sync(spanish_agent, "¿Cómo estás?")
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+import { Prompt } from "deepeval-ts";
+
+const prompt = new Prompt({ alias: "my-prompt" });
+prompt.pull({ version: "00.00.01" });
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: { 
+        prompt: prompt 
+      }
+    },
+    async () => {
+      const result = await run(agent, prompt.interpolate({ name: "Jhon" }));
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 <Note>
   Logging prompts lets you attribute specific prompts to OpenAI Agent LLM spans.
@@ -280,6 +529,10 @@ You can run evals at both the trace and span level. We recommend creating separa
 
 Replace your `Agent` with DeepEval's and supply the metric collection name to run evals on the agent span level.
 
+<CodeBlocks >
+
+<CodeBlock language="python">
+
 ```python main.py {10}
 import asyncio
 from agents import Runner, add_trace_processor
@@ -300,11 +553,47 @@ async def main():
 asyncio.run(main())
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      agentSpanContext: {
+        metricCollection: "agent-metric-collection"
+      }
+    },
+    async () => {
+      const result = await run(agent, "What's the weather in UK?");
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 
 <Tab title="LLM Span">
 
 Replace your Pydantic `Agent` with DeepEval’s and your supply the metric collection name to `Agent` to run evals on the LLM span level.
+
+<CodeBlocks >
+
+<CodeBlock language="python">
 
 ```python main.py {10}
 import asyncio
@@ -326,11 +615,47 @@ async def main():
 asyncio.run(main())
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        metricCollection: "llm-metric-collection"
+      }
+    },
+    async () => {
+      const result = await run(agent, "What's the weather in UK?");
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 
 <Tab title="Tool Span">
 
 Replace the `function_tool` decorator with DeepEval's wrapper, and provide the metric collection name to run evals on the tool span level.
+
+<CodeBlocks >
+
+<CodeBlock language="python">
 
 ```python main.py {7}
 import asyncio
@@ -355,6 +680,38 @@ async def main():
 
 asyncio.run(main())
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
+import { Agent, run, addTraceProcessor } from "@openai/agents";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const processor = new DeepEvalTracingProcessor();
+addTraceProcessor(processor);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        toolsMetricCollection: "tools-metric-collection",
+      }
+    },
+    async () => {
+      const result = await run(agent, "What's the weather in UK?");
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Tab>
 </Tabs>
