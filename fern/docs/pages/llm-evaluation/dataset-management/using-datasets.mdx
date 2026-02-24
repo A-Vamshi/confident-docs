@@ -157,7 +157,7 @@ evaluate(test_cases=dataset.test_cases, metrics=[...])
 First use the `.pull()` method:
 
 ```ts index.ts
-import { EvaluationDataset } from "deepeval-ts";
+import { EvaluationDataset } from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -172,7 +172,7 @@ console.log(dataset.goldens);
 Then loop through your dataset of goldens to create a list of test cases:
 
 ```ts index.ts focus={7-13}
-import { EvaluationDataset, Golden, LLMTestCase } from "deepeval-ts";
+import { EvaluationDataset, Golden, LLMTestCase } from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -196,7 +196,7 @@ import {
   ConversationalGolden,
   ConversationSimulator,
   EvaluationDataset,
-} from "deepeval-ts";
+} from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -220,7 +220,7 @@ for (const testCase of testCases) {
 By calling `.addTestCase()` in the previous step, each time you run evaluate Confident AI will automatically associate any created test run with your dataset:
 
 ```ts
-import { ConversationalTestCase, EvaluationDataset, evaluate } from "deepeval-ts";
+import { ConversationalTestCase, EvaluationDataset, evaluate } from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.pull({ alias: "YOUR-DATASET-ALIAS" });
@@ -361,7 +361,7 @@ for golden in dataset.goldens:
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { EvaluationDataset, Golden, LLMTestCase } from "deepeval-ts";
+import { EvaluationDataset, Golden, LLMTestCase } from "deepeval";
 
 const dataset = new EvaluationDataset();
 await dataset.pull({ alias: "YOUR-DATASET-ALIAS" });

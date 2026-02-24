@@ -100,7 +100,7 @@ def llm_app(query: str) -> str:
 
 ```typescript Trace {5,14,15} maxLines={24}
 import { OpenAI } from "openai";
-import { observe, getCurrentTrace } from "deepeval-ts/tracing";
+import { observe, getCurrentTrace } from "deepeval/tracing";
 
 const client = new OpenAI();
 
@@ -126,7 +126,7 @@ const observedLlmApp = observe({ fn: llmApp });
 
 ```typescript Span {5,14,15} maxLines={24}
 import { OpenAI } from "openai";
-import { observe, getCurrentSpan } from "deepeval-ts/tracing";
+import { observe, getCurrentSpan } from "deepeval/tracing";
 
 const client = new OpenAI();
 let SPAN_UUID;
@@ -209,7 +209,7 @@ send_annotation(
 <CodeBlock>
 
 ```typescript Thumbs Rating
-import { sendAnnotation } from "deepeval-ts/annotation";
+import { sendAnnotation } from "deepeval/annotation";
 
 sendAnnotation({
   traceUuid: TRACE_UUID,
@@ -223,7 +223,7 @@ sendAnnotation({
 <CodeBlock>
 
 ```typescript 5 Star Rating
-import { sendAnnotation, AnnotationType } from "deepeval-ts/annotation";
+import { sendAnnotation, AnnotationType } from "deepeval/annotation";
 
 sendAnnotation({
   traceUuid: TRACE_UUID,
@@ -279,7 +279,7 @@ def llm_app(query: str) -> str:
 
 ```typescript index.ts {5,14} maxLines={24}
 import { OpenAI } from "openai";
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 
 const client = new OpenAI();
 const THREAD_ID = "YOUR-THREAD-ID";
@@ -357,7 +357,7 @@ send_annotation(
 <CodeBlock>
 
 ```typescript Thumbs Rating
-import { sendAnnotation } from "deepeval-ts/annotation";
+import { sendAnnotation } from "deepeval/annotation";
 
 sendAnnotation({
   threadId: THREAD_ID,
@@ -370,7 +370,7 @@ sendAnnotation({
 <CodeBlock>
 
 ```typescript 5 Star Rating
-import { sendAnnotation, AnnotationType } from "deepeval-ts/annotation";
+import { sendAnnotation, AnnotationType } from "deepeval/annotation";
 
 sendAnnotation({
   threadId: THREAD_ID,

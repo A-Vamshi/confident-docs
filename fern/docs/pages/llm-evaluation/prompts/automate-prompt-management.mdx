@@ -76,7 +76,7 @@ prompt.push(
 For **message** prompts:
 
 ```ts index.ts
-import { Prompt, PromptMessage } from "deepeval-ts";
+import { Prompt, PromptMessage } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.push({
@@ -92,7 +92,7 @@ await prompt.push({
 For **text** prompts:
 
 ```ts index.ts
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 await prompt.push({ text: "You are a helpful assistant called {name}." });
@@ -142,7 +142,7 @@ prompt.create_version(hash="COMMIT-HASH")
 
 <Tab title="TypeScript" language="typescript">
 ```ts index.ts
-import { Prompt } from "deepeval-ts";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "YOUR-PROMPT-ALIAS" });
 
@@ -237,7 +237,7 @@ prompt.push(
 <Tab title="TypeScript" language="typescript">
 
 ```typescript maxLines={0}
-import { Prompt, PromptMessage, OutputType } from "deepeval-ts";
+import { Prompt, PromptMessage, OutputType } from "deepeval";
 
 const responseSchema = {
   name: "ResponseSchema",
@@ -419,7 +419,7 @@ prompt.push(
 <Tab title="TypeScript" language="typescript" >
 
 ```typescript
-import { Prompt, Tool, ToolMode } from "deepeval-ts";
+import { Prompt, Tool, ToolMode } from "deepeval";
 
 const responseSchema = {
   name: "ResponseSchema",

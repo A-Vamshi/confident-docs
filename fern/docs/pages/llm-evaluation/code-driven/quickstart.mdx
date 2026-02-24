@@ -204,7 +204,7 @@ It is mandatory to create a dataset for a proper evaluation workflow.
 <Tab title="Code">
 
 ```typescript index.ts
-import { EvaluationDataset, Golden } from "deepeval-ts";
+import { EvaluationDataset, Golden } from "deepeval";
 
 async function createDataset() {
   // goldens are what makes up your dataset
@@ -258,7 +258,7 @@ A test run is a benchmark/snapshot of your AI app's performance at any point in 
 - Use the metric collection you've created to evaluate each test case
 
 ```typescript index.ts maxLines=24
-import { EvaluationDataset, LLMTestCase, Golden, evaluate } from "deepeval-ts";
+import { EvaluationDataset, LLMTestCase, Golden, evaluate } from "deepeval";
 
 async function runEvaluation() {
   // Pull from Confident AI

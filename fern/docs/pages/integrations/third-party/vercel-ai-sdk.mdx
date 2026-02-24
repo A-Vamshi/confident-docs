@@ -21,7 +21,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
     Run the following command to install the required packages:
 
     ```bash
-    npm install ai deepeval-ts
+    npm install ai deepeval
     ```
 
   </Step>
@@ -32,7 +32,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
 
         ```typescript
         import { generateText } from "ai";
-        import { configureAiSdkTracing } from "deepeval-ts";
+        import { configureAiSdkTracing } from "deepeval";
 
         const tracer = configureAiSdkTracing();
 
@@ -51,7 +51,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
       <Tab title="Stream Text">
         ```typescript
         import { streamText } from "ai";
-        import { configureAiSdkTracing } from "deepeval-ts";
+        import { configureAiSdkTracing } from "deepeval";
 
         const tracer = configureAiSdkTracing();
 
@@ -73,7 +73,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
       <Tab title="Tool Calling">
         ```typescript
         import { generateText } from "ai";
-        import { configureAiSdkTracing } from "deepeval-ts";
+        import { configureAiSdkTracing } from "deepeval";
 
         const tracer = configureAiSdkTracing();
 
@@ -105,7 +105,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
       <Tab title="Generate Structured Data">
         ```typescript
         import { generateText } from "ai";
-        import { configureAiSdkTracing } from "deepeval-ts";
+        import { configureAiSdkTracing } from "deepeval";
 
         const tracer = configureAiSdkTracing();
 
@@ -135,7 +135,7 @@ export CONFIDENT_OTEL_URL="https://eu.otel.confident-ai.com"
       <Tab title="Embedding Text">
         ```typescript
         import { embed } from "ai";
-        import { configureAiSdkTracing } from "deepeval-ts";
+        import { configureAiSdkTracing } from "deepeval";
 
         const tracer = configureAiSdkTracing();
 
@@ -173,8 +173,8 @@ If you are [managing prompts](/docs/llm-evaluation/prompt-management/version-pro
 
 ```typescript
 import { generateText } from "ai";
-import { configureAiSdkTracing, Prompt } from "deepeval-ts";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { configureAiSdkTracing, Prompt } from "deepeval";
+import { setTracingContext } from "deepeval/tracing";
 
 const prompt = new Prompt({ alias: "PROMPT_ALIAS" });
 prompt.pull();
@@ -213,12 +213,12 @@ Confident AI's LLM tracing advanced features provide teams with the ability to s
 
 For example, `thread_id` and `user_id` are used to group related traces together, and are useful for chat apps, agents, or any multi-turn interactions. You can learn more about [threads](/docs/llm-tracing/features/threads) here.
 
-You can set these attributes using the `setTracingContext` function from `deepeval-ts`:
+You can set these attributes using the `setTracingContext` function from `deepeval`:
 
 ```typescript
 import { generateText } from "ai";
-import { configureAiSdkTracing } from "deepeval-ts";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { configureAiSdkTracing } from "deepeval";
+import { setTracingContext } from "deepeval/tracing";
 
 const tracer = configureAiSdkTracing();
 
@@ -299,8 +299,8 @@ You can run [online evals](/docs/llm-tracing/online-evals) on your AI SDK applic
 
     ```typescript
     import { generateText } from "ai";
-    import { configureAiSdkTracing } from "deepeval-ts";
-    import { setTracingContext } from "deepeval-ts/tracing";
+    import { configureAiSdkTracing } from "deepeval";
+    import { setTracingContext } from "deepeval/tracing";
 
     const tracer = configureAiSdkTracing();
 

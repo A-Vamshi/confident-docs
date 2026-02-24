@@ -77,7 +77,7 @@ dataset.push(alias="YOUR-DATASET-ALIAS", finalized=True)
 For **single-turn** datasets:
 
 ```ts index.ts
-import { EvaluationDataset, Golden } from "deepeval-ts";
+import { EvaluationDataset, Golden } from "deepeval";
 
 const goldens = [new Golden({ input: "How tall is Mt. Everest?" })];
 const dataset = new EvaluationDataset({ goldens: goldens });
@@ -95,7 +95,7 @@ For **multi-turn** datasets:
 <Tab title="With Turns">
 
 ```ts index.ts
-import { EvaluationDataset, ConversationalGolden, Turn } from "deepeval-ts";
+import { EvaluationDataset, ConversationalGolden, Turn } from "deepeval";
 
 const firstTurn = new Turn({
   role: "user",
@@ -117,7 +117,7 @@ dataset.push({ alias: "YOUR-DATASET-ALIAS", finalized: true });
 <Tab title="Without Turns">
 
 ```ts index.ts
-import { EvaluationDataset, ConversationalGolden } from "deepeval-ts";
+import { EvaluationDataset, ConversationalGolden } from "deepeval";
 
 const conversationalGolden = new ConversationalGolden({
   scenario: "Angry user asking for a refund.",
@@ -181,7 +181,7 @@ multiturn_golden = ConversationalGolden(
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { Golden, ConversationalGolden } from "deepeval-ts";
+import { Golden, ConversationalGolden } from "deepeval";
 
 const golden = new Golden({
   input: "How tall is Mt. Everest?",
@@ -232,7 +232,7 @@ dataset.delete(alias="YOUR-DATASET-ALIAS")
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { EvaluationDataset } from "deepeval-ts";
+import { EvaluationDataset } from "deepeval";
 
 const dataset = new EvaluationDataset();
 dataset.delete({ alias: "YOUR-DATASET-ALIAS" });
@@ -270,7 +270,7 @@ dataset = EvaluationDataset(confident_api_key="confident_us...")
 <Tab title="Typescript" language="typescript">
 
 ```ts index.ts
-import { EvaluationDataset } from "deepeval-ts";
+import { EvaluationDataset } from "deepeval";
 
 const dataset = new EvaluationDataset({ confidenApiKey: "confident_us..." });
 ```

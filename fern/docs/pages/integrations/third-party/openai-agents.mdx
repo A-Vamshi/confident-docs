@@ -28,7 +28,7 @@ pip install -U deepeval openai-agents
 <CodeBlock language="typescript">
 
 ```typescript
-npm install deepeval-ts @openai/agents
+npm install deepeval @openai/agents
 ```
 
 </CodeBlock>
@@ -174,7 +174,7 @@ with trace(workflow_name="test_workflow_1", group_id="test_group_id_1"):
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -224,7 +224,7 @@ with trace(workflow_name="test_workflow_1", metadata={"test_metadata_1": "test_m
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -281,7 +281,7 @@ asyncio.run(main())
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -343,7 +343,7 @@ with trace(workflow_name="test_workflow_1", metadata={"test_metadata_1": "test_m
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext, updateCurrentTrace } from "deepeval-ts/tracing";
+import { setTracingContext, updateCurrentTrace } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -441,8 +441,8 @@ Runner.run_sync(spanish_agent, "¿Cómo estás?")
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
-import { Prompt } from "deepeval-ts";
+import { setTracingContext } from "deepeval/tracing";
+import { Prompt } from "deepeval";
 
 const prompt = new Prompt({ alias: "my-prompt" });
 prompt.pull({ version: "00.00.01" });
@@ -560,7 +560,7 @@ asyncio.run(main())
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -622,7 +622,7 @@ asyncio.run(main())
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);
@@ -688,7 +688,7 @@ asyncio.run(main())
 ```typescript
 import { DeepEvalTracingProcessor } from "deepeval/integrations/openai-agents";
 import { Agent, run, addTraceProcessor } from "@openai/agents";
-import { setTracingContext } from "deepeval-ts/tracing";
+import { setTracingContext } from "deepeval/tracing";
 
 const processor = new DeepEvalTracingProcessor();
 addTraceProcessor(processor);

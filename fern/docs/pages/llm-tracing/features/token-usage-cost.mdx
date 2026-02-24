@@ -100,7 +100,7 @@ def generate_response(prompt: str) -> str:
 <Tab title="TypeScript">
 
 ```typescript title="index.ts" {10,11} maxLines={0}
-import { observe, updateLlmSpan } from "deepeval-ts/tracing";
+import { observe, updateLlmSpan } from "deepeval/tracing";
 
 const generateResponse = async (prompt: string) => {
   const response = await callLlm(prompt);
@@ -182,7 +182,7 @@ def generate_response(prompt: str) -> str:
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" {6,7,15,16} maxLines={0}
-import { observe, updateLlmSpan } from "deepeval-ts/tracing";
+import { observe, updateLlmSpan } from "deepeval/tracing";
 
 const generateResponse = (prompt: string): string => {
   const output = callLlm(prompt);
@@ -245,7 +245,7 @@ def generate_response(prompt: str) -> str:
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" {11} maxLines={0}
-import { observe, updateCurrentSpan } from "deepeval-ts/tracing";
+import { observe, updateCurrentSpan } from "deepeval/tracing";
 
 const generateResponse = async (prompt: string) => {
   const output = await callLlm(prompt);

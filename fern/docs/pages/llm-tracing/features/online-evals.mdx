@@ -128,7 +128,7 @@ llm_app("Write me a poem.")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" {4,11} maxLines={0}
-import { observe, updateCurrentSpan } from "deepeval-ts/tracing";
+import { observe, updateCurrentSpan } from "deepeval/tracing";
 
 const generate = async (prompt: string): Promise<string> => {
   updateCurrentSpan({ input: prompt, output: "LLM response" });
@@ -181,7 +181,7 @@ llm_app("Write me a poem.")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" {4,11} maxLines={0}
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 
 const generate = async (prompt: string): Promise<string> => {
   updateCurrentTrace({ input: prompt, output: "LLM response" });
@@ -225,7 +225,7 @@ evaluate_trace(trace_uuid="your-trace-uuid", metric_collection="Collection Name"
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="main.py"
-import { evaluateTrace } from "deepeval-ts/tracing";
+import { evaluateTrace } from "deepeval/tracing";
 
 await evaluateTrace({
   traceUuid: "your-trace-uuid",
@@ -258,7 +258,7 @@ evaluate_span(span_uuid="your-span-uuid", metric_collection="Collection Name")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="main.py"
-import { evaluateSpan } from "deepeval-ts/tracing";
+import { evaluateSpan } from "deepeval/tracing";
 
 await evaluateSpan({
   spanUuid: "your-span-uuid",
@@ -298,7 +298,7 @@ import {
   observe,
   updateCurrentSpan,
   updateCurrentTrace,
-} from "deepeval-ts/tracing";
+} from "deepeval/tracing";
 
 const innerFunction = () => {
   updateCurrentSpan({ input: "...", output: "..." });

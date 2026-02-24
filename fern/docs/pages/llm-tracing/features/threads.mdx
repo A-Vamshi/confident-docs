@@ -45,7 +45,7 @@ llm_app("What about tomorrow?")
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" {12} maxLines={0}
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 import OpenAI from "openai";
 
 const llmApp = async (query: string) => {
@@ -107,7 +107,7 @@ def llm_app(query: str):
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" maxLines={0}
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 import OpenAI from "openai";
 
 const llmApp = async (query: string) => {
@@ -202,7 +202,7 @@ def llm_app(query: str):
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" maxLines={0}
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 
 const llmApp = async (query: string) => {
   const { res, tools } = await callAgent(query);
@@ -247,7 +247,7 @@ def llm_app(query: str):
 <Tab title="TypeScript" language="typescript">
 
 ```typescript title="index.ts" maxLines={0}
-import { observe, updateCurrentTrace } from "deepeval-ts/tracing";
+import { observe, updateCurrentTrace } from "deepeval/tracing";
 
 const llmApp = async (query: string) => {
   const chunks = await retrieve(query);
