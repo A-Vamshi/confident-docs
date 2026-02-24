@@ -15,9 +15,25 @@ Confident AI lets you trace and evaluate OpenAI calls, whether standalone or use
 
 Run the following command to install the required packages:
 
-```bash
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python
 pip install -U deepeval openai
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+npm install deepeval-ts openai
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Step>
 
@@ -27,7 +43,15 @@ Login to Confident AI using your Confident API key.
 
 <CodeBlocks>
 
-<CodeBlock language="bash">
+<CodeBlock title="Env" language="bash">
+
+```bash
+export CONFIDENT_API_KEY="<your-confident-api-key>"
+```
+
+</CodeBlock>
+
+<CodeBlock language="bash" title="Bash">
 
 ```bash
 deepeval login
@@ -57,7 +81,11 @@ To begin tracing your OpenAI calls as a component in your application, import Op
 <Tabs>
   <Tab title="Chat Completions">
 
-```python main.py {1}
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python {1}
 from deepeval.openai import OpenAI
 
 client = OpenAI()
@@ -71,10 +99,44 @@ response = client.chat.completions.create(
 )
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript {2,6}
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/openai";
+
+const client = new OpenAI();
+// Instrument the OpenAI client to automatically trace spans
+instrumentOpenAI(client);
+
+const main = async () => {
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "What is the weather in France?" },
+    ],
+  });
+  
+  console.log(response);
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Responses">
 
-```python main.py {1}
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python {1}
 from deepeval.openai import OpenAI
 
 client = OpenAI()
@@ -86,10 +148,42 @@ response = client.responses.create(
 )
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript {2,6}
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/openai";
+
+const client = new OpenAI();
+// Instrument the OpenAI client to automatically trace spans
+instrumentOpenAI(client);
+
+const main = async () => {
+  const response = await client.responses.create({
+    model: "gpt-4o-mini",
+    instructions: "You are a helpful assistant.",
+    input: "What is the weather in France?",
+  });
+  
+  console.log(response);
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Chat Completions">
 
-```python main.py {2}
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python {2}
 import asyncio
 from deepeval.openai import AsyncOpenAI
 
@@ -108,10 +202,44 @@ async def generate_response(input: str) -> str:
 response = asyncio.run(generate_response("What is the weather in France?"))
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript {2,6}
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/openai";
+
+const client = new OpenAI();
+// Instrument the OpenAI client to automatically trace spans
+instrumentOpenAI(client);
+
+const main = async () => {
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "What is the weather in France?" },
+    ],
+  });
+  
+  console.log(response);
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Responses">
 
-```python main.py {2}
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python {2}
 import asyncio
 from deepeval.openai import AsyncOpenAI
 
@@ -128,6 +256,34 @@ async def generate_response(input: str) -> str:
 response = asyncio.run(generate_response("What is the weather in France?"))
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript {2,6}
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/openai";
+
+const client = new OpenAI();
+// Instrument the OpenAI client to automatically trace spans
+instrumentOpenAI(client);
+
+const main = async () => {
+  const response = await client.responses.create({
+    model: "gpt-4o-mini",
+    instructions: "You are a helpful assistant.",
+    input: "What is the weather in France?",
+  });
+  
+  console.log(response);
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 </Tabs>
 
@@ -140,9 +296,25 @@ response = asyncio.run(generate_response("What is the weather in France?"))
 
 Invoke your agent by executing the script:
 
-```bash
+<CodeBlocks >
+
+<CodeBlock language="python">
+
+```python
 python main.py
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+npx ts-node
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 You can directly view the traces on [Confident AI](https://app.confident.ai) by clicking on the link in the output printed in the console.
 
@@ -156,7 +328,11 @@ You can directly view the traces on [Confident AI](https://app.confident.ai) by 
 
 If you are [managing prompts](/docs/llm-evaluation/prompt-management/version-prompts) on Confident AI and wish to log them, pass your `Prompt` object to the `trace` context.
 
-```python main.py
+<CodeBlocks >
+
+<CodeBlock language="python">
+
+```python
 from deepeval.openai import OpenAI
 from deepeval.prompt import Prompt
 from deepeval.tracing import trace
@@ -176,11 +352,59 @@ with trace(prompt=prompt):
     )
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+import { Prompt } from "deepeval-ts";
+
+const prompt = new Prompt({ alias: "my-prompt" });
+prompt.pull({ version: "00.00.01" });
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: { 
+        prompt: prompt 
+      }
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: prompt.interpolate({ name: "Jhon" }) },
+          { role: "user", content: "Hello, how are you?" },
+        ],
+      });
+      
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 ### Logging threads
 
 Threads are used to group related traces together, and are useful for chat apps, agents, or any multi-turn interactions. Learn more about [threads](/docs/llm-tracing/features/threads) here. You can set the `thread_id` in the `trace` context.
 
-```python main.py
+<CodeBlocks >
+
+<CodeBlock language="python">
+
+```python
 from deepeval.openai import OpenAI
 from deepeval.tracing import trace
 
@@ -196,6 +420,44 @@ with trace(thread_id="test_thread_id_1"):
     )
 ```
 
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      threadId: "test_thread_id_1",
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "Hello, how are you?" },
+        ],
+      });
+      
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 ### Other trace attributes
 
 Confident AI's LLM tracing advanced features provide teams with the ability to set certain attributes for each trace when invoking your OpenAI client.
@@ -204,7 +466,11 @@ For example, `user_id` can be used to enable user analytics. You can learn more 
 
 You can set these attributes in the `trace` context when invoking your OpenAI client.
 
-```python main.py maxLines=100
+<CodeBlocks >
+
+<CodeBlock language="python">
+
+```python maxLines=100
 from deepeval.openai import OpenAI
 from deepeval.tracing import trace
 
@@ -222,6 +488,45 @@ with trace(
         ],
     )
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      threadId: "test_thread_id_1",
+      metadata={ test_metadata_1: "test_metadata_1" }
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "Hello, how are you?" },
+        ],
+      });
+      
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 <Note>
   This override the trace attributes that were set using `update_current_trace`
@@ -281,6 +586,10 @@ Create a metric collection on [Confident AI](https://app.confident.ai) with the 
 
 Set the `llm_metric_collection` name in the `trace` context when invoking your OpenAI client to evaluate Llm Spans.
 
+<CodeBlocks >
+
+<CodeBlock language="python">
+
 ```python main.py
 from deepeval.openai import OpenAI
 from deepeval.tracing import trace
@@ -296,6 +605,45 @@ with trace(llm_metric_collection="test_collection_1"):
         ],
     )
 ```
+
+</CodeBlock>
+
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      threadId: "test_thread_id_1",
+      llmSpanContext: { metricCollection: "test_collection_1" }
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "Hello, how are you?" },
+        ],
+      });
+      
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Step>
 
@@ -326,6 +674,10 @@ task_completion = AnswerRelevancyMetric(
   `trace` context.
 </Warning>
 
+<Note>
+For typescript users, you can just pass the `metricCollection` for different contexts inside the `setTracingContext` method and run online evals on the Confident AI platform. 
+</Note>
+
 </Step>
 
 <Step title="Run evals">
@@ -335,7 +687,11 @@ Replace your `OpenAI` client with DeepEval's. Then, use the dataset's `evals_ite
 <Tabs>
 <Tab title="Chat Completions">
 
-```python main.py
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python
 from deepeval.openai import OpenAI
 from deepeval.metrics import AnswerRelevancyMetric, BiasMetric
 from deepeval.dataset import EvaluationDataset
@@ -361,10 +717,51 @@ for golden in dataset.evals_iterator():
         )
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metricCollection: "trace-metric-collection",
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "What is the weather in France?" },
+        ],
+      });
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Responses">
 
-```python main.py
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python
 from deepeval.openai import OpenAI
 from deepeval.metrics import AnswerRelevancyMetric, BiasMetric
 from deepeval.dataset import EvaluationDataset, Golden
@@ -388,10 +785,50 @@ for golden in dataset.evals_iterator():
         )
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metricCollection: "trace-metric-collection",
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.responses.create({
+        model: "gpt-4o-mini",
+        instructions: "You are a helpful assistant.",
+        input: "What is the weather in France?",
+      });
+    
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Chat Completions">
 
-```python main.py
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python
 import asyncio
 from deepeval.openai import AsyncOpenAI
 from deepeval.metrics import AnswerRelevancyMetric, BiasMetric
@@ -421,10 +858,51 @@ for golden in dataset.evals_iterator():
     dataset.evaluate(task)
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metricCollection: "trace-metric-collection",
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "What is the weather in France?" },
+        ],
+      });
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Responses">
 
-```python main.py
+<CodeBlocks>
+
+<CodeBlock language="python">
+
+```python
 import asyncio
 from deepeval.openai import AsyncOpenAI
 from deepeval.metrics import AnswerRelevancyMetric, BiasMetric
@@ -452,6 +930,42 @@ for golden in dataset.evals_iterator():
     task = asyncio.create_task(openai_llm_call(golden.input))
     dataset.evaluate(task)
 ```
+
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      metricCollection: "trace-metric-collection",
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.responses.create({
+        model: "gpt-4o-mini",
+        instructions: "You are a helpful assistant.",
+        input: "What is the weather in France?",
+      });
+    
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Tab>
 </Tabs>
@@ -501,6 +1015,10 @@ Replace your `OpenAI` client with DeepEval's. Then, use the dataset's `evals_ite
 <Tabs>
   <Tab title="Chat Completions">
 
+<CodeBlocks>
+
+<CodeBlock language="python">
+
 ```python
 from deepeval.openai import OpenAI
 from deepeval.tracing import observe, trace
@@ -533,8 +1051,51 @@ for golden in dataset.evals_iterator():
     generate_response(golden.input)
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        metricCollection: "trace-metric-collection",
+      }
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "What is the weather in France?" },
+        ],
+      });
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Responses">
+
+<CodeBlocks>
+
+<CodeBlock language="python">
 
 ```python
 from deepeval.openai import OpenAI
@@ -566,8 +1127,50 @@ for golden in dataset.evals_iterator():
     generate_response(golden.input)
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        metricCollection: "trace-metric-collection",
+      }
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.responses.create({
+        model: "gpt-4o-mini",
+        instructions: "You are a helpful assistant.",
+        input: "What is the weather in France?",
+      });
+    
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Chat Completions">
+
+<CodeBlocks>
+
+<CodeBlock language="python">
 
 ```python
 from deepeval.openai import OpenAI
@@ -602,8 +1205,51 @@ for golden in dataset.evals_iterator():
     generate_response(golden.input)
 ```
 
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        metricCollection: "trace-metric-collection",
+      }
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "What is the weather in France?" },
+        ],
+      });
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
+
 </Tab>
 <Tab title="Async Responses">
+
+<CodeBlocks>
+
+<CodeBlock language="python">
 
 ```python
 import asyncio
@@ -636,6 +1282,44 @@ for golden in dataset.evals_iterator():
     task = asyncio.create_task(generate_response(golden.input))
     dataset.evaluate(task)
 ```
+
+</CodeBlock>
+<CodeBlock language="typescript">
+
+```typescript
+import OpenAI from "openai";
+import { instrumentOpenAI } from "deepeval-ts/integrations/openai";
+import { setTracingContext } from "deepeval-ts/tracing";
+
+const client = new OpenAI();
+instrumentOpenAI(client);
+
+const main = async () => {
+  await setTracingContext(
+    {
+      llmSpanContext: {
+        metricCollection: "trace-metric-collection",
+      }
+      expectedOutput: "The weather in France is sunny.",
+    },
+    async () => {
+      const response = await client.responses.create({
+        model: "gpt-4o-mini",
+        instructions: "You are a helpful assistant.",
+        input: "What is the weather in France?",
+      });
+    
+      console.log(response);
+    }
+  );
+};
+
+main();
+```
+
+</CodeBlock>
+
+</CodeBlocks>
 
 </Tab>
 </Tabs>
