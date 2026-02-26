@@ -171,6 +171,7 @@
 
     // Settings - Organization
     "settings.organization.auth": `${S3_BASE}/confident-docs:organization-auth.png`,
+    "settings.organization.rolesPermissions": `${S3_BASE}/settings:org:roles-n-permissions.png`,
 
     // Settings - Project
     "settings.project.rolesPermissions": `${S3_BASE}/settings:project:roles-n-permissions.png`,
