@@ -457,6 +457,9 @@ navigation:
           - page: Users
             path: docs/pages/settings/organization/users.mdx
             icon: fa-light fa-users
+          - page: Roles & Permissions
+            path: docs/pages/settings/organization/roles-and-permissions.mdx
+            icon: fa-light fa-user-shield
           - page: Model Credentials
             path: docs/pages/settings/organization/model-credentials.mdx
             icon: fa-light fa-key
